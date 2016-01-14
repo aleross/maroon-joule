@@ -1,5 +1,5 @@
 import React from 'react';
-import { githubApi } from '../utils';
+import { loadFromGithub } from '../utils';
 
 export default class IssueDetail extends React.Component {
 
@@ -9,7 +9,7 @@ export default class IssueDetail extends React.Component {
     }
 
     componentDidMount() {
-        githubApi('/issues/' + this.props.params.issueId)
+        loadFromGithub('/repos/npm/npm/issues/' + this.props.params.issueId)
             .then(data => this.setState({ issue: data }))
             .catch(e => console.error(e));
     }

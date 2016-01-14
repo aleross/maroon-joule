@@ -3,7 +3,6 @@ import '../css/app.scss';
 // TODO router
 
 import 'babel-polyfill';
-import HelloBox from './components/HelloBox';
 import Issues from './components/Issues';
 import IssueList from './components/IssueList';
 import IssueDetail from './components/IssueDetail';
@@ -25,13 +24,28 @@ class App extends React.Component {
     }
 }
 
-// TODO: 404 route
+class NoMatch extends React.Component {
+    constructor() {
+        super();
+    }
+
+    render() {
+        return (
+            <h1>Not found</h1>
+        )
+    }
+}
+
+// TODO:
+// - 404 route
+// - dynamic repo
 
 render((
     <Router history={browserHistory}>
         <Route path="/" component={App}>
-            <Route path="/issues" component={IssueList}/>
-            <Route path="/issues/:issueId" component={IssueDetail}/>
+            <Route path="/issues/:page" component={IssueList}/>
+            <Route path="/issue/:issueId" component={IssueDetail}/>
         </Route>
+        <Route path="*" component={NoMatch}/>
     </Router>
 ), document.getElementById('content'));

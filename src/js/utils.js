@@ -1,7 +1,7 @@
 import 'whatwg-fetch';
 
-export function githubApi(endpoint) {
-    const host = 'https://api.github.com/repos/npm/npm';
+export function loadFromGithub(endpoint) {
+    const host = 'https://api.github.com';
     const url = host + endpoint;
 
     if (!endpoint) {
