@@ -1,9 +1,14 @@
+@import 'utils';
+@import 'issue-list';
+@import 'issue-detail';
+
 html, body {
     height: 100%;
 }
 
 body {
     display: flex;
+    font-family: 'Lato', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 }
 
 * {
@@ -14,6 +19,14 @@ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
+}
+
+h2 {
+    color: #171922;
+}
+
+h3 {
+    color: #35373C;
 }
 
 #sidebar {
@@ -29,34 +42,6 @@ ul {
     #content {
         display: flex;
         height: 100%;
-    }
-
-    #issue-list {
-        $pagination-height: 80px;
-        width: 50%;
-        height: 100%;
-        position: relative;
-        padding: 30px 30px $pagination-height 30px;
-        footer {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: $pagination-height;
-            nav {
-                display: flex;
-                height: 100%;
-                justify-content: center;
-                align-items: center;
-                font-size: 90%;
-            }
-        }
-    }
-
-    #issue-detail {
-        width: 50%;
-        height: 100%;
-        border-left: 1px solid #ccc;
     }
 }
 

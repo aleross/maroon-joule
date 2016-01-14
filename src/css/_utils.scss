@@ -1,0 +1,18 @@
+
+/* Custom slim scrollbar
+========================================================================== */
+.scroll {
+    &::-webkit-scrollbar-thumb {
+        border-radius: 0;
+        background-color: whitesmoke;
+    }
+
+    &::-webkit-scrollbar-track {
+        border-left: 1px solid whitesmoke;
+    }
+
+    &::-webkit-scrollbar {
+        width: 7px;
+        height: 7px;
+    }
+}

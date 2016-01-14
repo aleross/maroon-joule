@@ -55,9 +55,10 @@ export default class IssueList extends React.Component {
         return (
             <div id="content">
                 <section id="issue-list">
-                    <ul>
+                    <header><h2 id="issues-header">All Open Issues <small>(npm/npm)</small></h2></header>
+                    <ul className="scroll">
                         {this.state.issues.map(issue => (
-                            <li key={issue.number}><Link to={`/issues/${issue.number}`}>{issue.title}</Link></li>
+                            <li className="issue" key={issue.number}><Link to={`/issues/${issue.number}`}>{issue.title}</Link></li>
                         ))}
                     </ul>
                     <footer>
