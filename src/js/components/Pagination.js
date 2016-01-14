@@ -76,7 +76,7 @@ export default class Pagination extends React.Component {
     // span without navigation abilities
     _getPageElement(page) {
         if (page.num) {
-            return (<Link onClick={this._onNavClick} to={`/issues?page=${page.num}`}>{page.label}</Link>)
+            return (<Link onClick={this._onNavClick} to={`?page=${page.num}`}>{page.label}</Link>)
         } else {
             return (<span>{page.label}</span>)
         }

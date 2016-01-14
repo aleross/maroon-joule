@@ -53,14 +53,19 @@ export default class IssueList extends React.Component {
 
     render() {
         return (
-            <section id="issues-list">
-                <ul>
-                    {this.state.issues.map(issue => (
-                        <li key={issue.number}><Link to={`/issues/${issue.number}`}>{issue.title}</Link></li>
-                    ))}
-                </ul>
-                <Pagination page={this._getPage(this.props)}/>
-            </section>
+            <div id="content">
+                <section id="issue-list">
+                    <ul>
+                        {this.state.issues.map(issue => (
+                            <li key={issue.number}><Link to={`/issues/${issue.number}`}>{issue.title}</Link></li>
+                        ))}
+                    </ul>
+                    <footer>
+                        <Pagination page={this._getPage(this.props)}/>
+                    </footer>
+                </section>
+                <section id="issue-detail">Select an issue</section>
+            </div>
         )
     }
 }

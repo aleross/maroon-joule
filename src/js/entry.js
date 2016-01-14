@@ -18,7 +18,7 @@ class App extends React.Component {
 
     render() {
         return (
-            <div className="container">
+            <div>
                 {this.props.children}
             </div>
         )
@@ -43,10 +43,9 @@ class NoMatch extends React.Component {
 
 render((
     <Router history={browserHistory}>
-        <Route path="/" component={App}>
-            <Route path="/issues" component={IssueList}/>
+        <Route path="/" component={IssueList}>
             <Route path="/issues/:issueId" component={IssueDetail}/>
         </Route>
         <Route path="*" component={NoMatch}/>
     </Router>
-), document.getElementById('content'));
+), document.getElementById('content-wrapper'));
