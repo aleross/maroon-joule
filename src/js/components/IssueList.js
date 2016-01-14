@@ -17,8 +17,27 @@ export default class IssueList extends React.Component {
         };
     }
 
-    fetchIssues() {
-        loadFromGithub(`/repos/npm/npm/issues?page=${this.getPage(this.props)}&per_page=25`)
+    // Load issues list when first mounted
+    componentDidMount() {
+        this._fetchIssues();
+    }
+
+    // Refresh issues list
+    componentDidUpdate(prevProps) {
+        let prevPage = this._getPage(prevProps);
+        let newPage = this._getPage(this.props);
+        if (prevPage !== newPage) {
+            this._fetchIssues();
+        }
+    }
+
+    // Prevents in-progress API call from changing state
+    componentWillUnmount() {
+        this.ignoreLastFetch = true;
+    }
+
+    _fetchIssues() {
+        loadFromGithub(`/repos/npm/npm/issues?page=${this._getPage(this.props)}&per_page=25`)
             .then(data => {
                 if (!this.ignoreLastFetch) {
                     this.setState({ issues: data });
@@ -27,28 +46,9 @@ export default class IssueList extends React.Component {
             .catch(e => console.error(e));
     }
 
-    getPage(props) {
+    _getPage(props) {
         let { query } = props.location;
         return query ? (Number(query.page) || 1) : 1;
-    }
-
-    // Load issues list when first mounted
-    componentDidMount() {
-        this.fetchIssues();
-    }
-
-    // Refresh issues list
-    componentDidUpdate(prevProps) {
-        let prevPage = this.getPage(prevProps);
-        let newPage = this.getPage(this.props);
-        if (prevPage !== newPage) {
-            this.fetchIssues();
-        }
-    }
-
-    // Prevents in-progress API call from changing state
-    componentWillUnmount() {
-        this.ignoreLastFetch = true;
     }
 
     render() {
@@ -59,7 +59,7 @@ export default class IssueList extends React.Component {
                         <li key={issue.number}><Link to={`/issues/${issue.number}`}>{issue.title}</Link></li>
                     ))}
                 </ul>
-                <Pagination page={this.getPage(this.props)}/>
+                <Pagination page={this._getPage(this.props)}/>
             </section>
         )
     }

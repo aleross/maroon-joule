@@ -13,7 +13,7 @@ export default class Pagination extends React.Component {
     componentDidMount() {
         loadFromGithub('/repos/npm/npm').then(data => {
             this.state.totalPages = Math.ceil(data['open_issues_count'] / 25);
-            this.buildPages();
+            this._buildPages();
         }).catch(e => console.error('Pagination error:', e));
     }
 
@@ -22,11 +22,11 @@ export default class Pagination extends React.Component {
         let page = nextProps.page;
         if (this.state && this.state.currentPage !== page) {
             this.state.currentPage = page;
-            this.buildPages();
+            this._buildPages();
         }
     }
 
-    buildPages() {
+    _buildPages() {
         const maxPages = 9;
         const { currentPage, totalPages } = this.state;
         let pages = [];
@@ -74,16 +74,16 @@ export default class Pagination extends React.Component {
 
     // Conditionally return anchor tag or simple
     // span without navigation abilities
-    getPageElement(page) {
+    _getPageElement(page) {
         if (page.num) {
-            return (<Link onClick={this.onNavClick} to={`/issues?page=${page.num}`}>{page.label}</Link>)
+            return (<Link onClick={this._onNavClick} to={`/issues?page=${page.num}`}>{page.label}</Link>)
         } else {
             return (<span>{page.label}</span>)
         }
     }
 
     // Remove sticky active effect when clicking on links
-    onNavClick(event) {
+    _onNavClick(event) {
         event.target.blur();
     }
 
@@ -92,7 +92,7 @@ export default class Pagination extends React.Component {
             <nav>
                 <ul className="pagination">
                     { this.state.pages.map((page, index) => {
-                        return (<li key={index} className={page.classes}>{this.getPageElement(page)}</li>);
+                        return (<li key={index} className={page.classes}>{this._getPageElement(page)}</li>);
                     })}
                 </ul>
             </nav>

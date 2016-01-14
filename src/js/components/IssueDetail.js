@@ -9,6 +9,10 @@ export default class IssueDetail extends React.Component {
     }
 
     componentDidMount() {
+        this._fetchIssue();
+    }
+
+    _fetchIssue() {
         let { issueId } = this.props.params;
         loadFromGithub(`/repos/npm/npm/issues/${issueId}`)
             .then(data => this.setState({ issue: data }))
@@ -21,3 +25,5 @@ export default class IssueDetail extends React.Component {
         )
     }
 }
+
+IssueDetail.propTypes = { issueId: React.PropTypes.string.isRequired };
