@@ -18,7 +18,7 @@ export default class IssueList extends React.Component {
         return (
             <ul id="issue-list">
                 {this.state.issues.map(issue => (
-                    <li key={issue.id}><Link to={`/issue/${issue.id}`}>{issue.title}</Link></li>
+                    <li key={issue.number}><Link to={`/issues/${issue.number}`}>{issue.title}</Link></li>
                 ))}
             </ul>
         )

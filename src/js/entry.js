@@ -25,6 +25,8 @@ class App extends React.Component {
     }
 }
 
+// TODO: 404 route
+
 render((
     <Router history={browserHistory}>
         <Route path="/" component={App}>
