@@ -8,7 +8,7 @@ export default class IssueDetail extends React.Component {
 
     render() {
         return (
-            <div className="issue-detail"></div>
+            <div className="issue-detail">Issue detail</div>
         )
     }
 }
