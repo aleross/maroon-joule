@@ -17,7 +17,6 @@ export default class Pagination extends React.Component {
     }
 
     render() {
-        console.warn('page', this.props.page);
         return (
             <nav>
                 <ul className="pagination">

@@ -9,7 +9,8 @@ export default class IssueDetail extends React.Component {
     }
 
     componentDidMount() {
-        loadFromGithub('/repos/npm/npm/issues/' + this.props.params.issueId)
+        let { issueId } = this.props.params;
+        loadFromGithub(`/repos/npm/npm/issues/${issueId}`)
             .then(data => this.setState({ issue: data }))
             .catch(e => console.error(e));
     }
