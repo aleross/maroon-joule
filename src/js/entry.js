@@ -1,5 +1,5 @@
-import '../css/app.scss';
 import 'bootstrap/dist/css/bootstrap.css';
+import '../css/app.scss';
 
 // TODO router
 

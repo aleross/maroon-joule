@@ -4,9 +4,6 @@ import { loadFromGithub } from '../utils';
 
 export default class Pagination extends React.Component {
 
-    // TODO:
-    // - reload page count on page?
-
     constructor() {
         super();
         this.state = { currentPage: null, pages: [], totalPages: null }
@@ -30,37 +27,73 @@ export default class Pagination extends React.Component {
     }
 
     buildPages() {
-        const maxPages = 11;
+        const maxPages = 9;
+        const { currentPage, totalPages } = this.state;
         let pages = [];
-        let { currentPage, totalPages } = this.state;
 
-        if (totalPages) {
-            if (totalPages > maxPages) {
-                let beg = [{ num: 1 }, { num: 2 }],
-                    mid = [
-                        { num: '...', classes: 'disabled' },
-                        { num: currentPage - 2 },
-                        { num: currentPage - 1 },
-                        { num: currentPage, classes: 'active' },
-                        { num: currentPage + 1 },
-                        { num: currentPage + 2 },
-                        { num: '...', classes: 'disabled' }
-                    ],
-                    end = [{ num: totalPages - 1 }, { num: totalPages }];
-                pages.concat(beg, mid, end);
+        if (totalPages && currentPage) {
+
+            // Populate the initial pages array with all pages
+            for (let i = 1; i <= totalPages; i++) {
+                pages.push({ label: i, num: i, classes: currentPage === i ? 'active': null });
             }
+
+            // If we have more than the max number of pages, replace ranges
+            // with ellipses depending on current page position
+            if (totalPages > maxPages) {
+                if (currentPage > 5) {
+                    let diff = currentPage - 5;
+                    pages.splice(2, diff, { label: '...', classes: 'disabled' });
+                }
+                if ((currentPage + 4) < totalPages) {
+                    let diff = totalPages - (currentPage + 4),
+                        currentIndex = pages.findIndex(function (page) {
+                            return page.classes === 'active';
+                        });
+                    pages.splice(currentIndex + 3, diff, { label: '...', classes: 'disabled' });
+                }
+            }
+
+            // Previous button
+            pages.unshift({
+                label: 'Previous',
+                num: (currentPage > 1) ? currentPage - 1 : null,
+                classes: (currentPage === 1) ? 'disabled' : null
+            });
+
+            // Next button
+            pages.push({
+                label: 'Next',
+                num: (currentPage < totalPages) ? currentPage + 1 : null,
+                classes: (currentPage === totalPages) ? 'disabled' : null
+            });
         }
 
         this.setState({ pages: pages });
+    }
+
+    // Conditionally return anchor tag or simple
+    // span without navigation abilities
+    static getPageElement(page) {
+        if (page.num) {
+            return (<Link onClick={Pagination.onNavClick} to={`/issues/${page.num}`}>{page.label}</Link>)
+        } else {
+            return (<span>{page.label}</span>)
+        }
+    }
+
+    // Remove sticky active effect when clicking on links
+    static onNavClick(event) {
+        event.target.blur();
     }
 
     render() {
         return (
             <nav>
                 <ul className="pagination">
-                    { this.state.pages.map(page => (
-                        <li key={page.num} className={page.classes}><Link to={`/issues/${page.num}`}>{page.num}</Link></li>
-                    ))}
+                    { this.state.pages.map((page, index) => {
+                        return (<li key={index} className={page.classes}>{Pagination.getPageElement(page)}</li>);
+                    })}
                 </ul>
             </nav>
         )

@@ -1,1 +1,11 @@
 // Placeholder
+.pagination {
+    .disabled {
+        span, span:hover {
+            background-color: rgba(0,0,0,0.03);
+            color: #ccc;
+            user-select: none;
+            cursor: default;
+        }
+    }
+}
