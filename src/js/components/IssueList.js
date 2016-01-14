@@ -18,8 +18,8 @@ export default class IssueList extends React.Component {
     }
 
     fetchIssues() {
-        this.state.page = Number(this.props.params.page) || 1;
-        loadFromGithub(`/repos/npm/npm/issues?page=${this.state.page}`)
+        this.state.page = this.props.params.page || 1;
+        loadFromGithub(`/repos/npm/npm/issues?page=${this.state.page}&per_page=25`)
             .then(data => {
                 if (!this.ignoreLastFetch) {
                     this.setState({ issues: data });
