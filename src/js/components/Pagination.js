@@ -19,7 +19,7 @@ export default class Pagination extends React.Component {
 
     // Update current page and pages range when page property changes
     componentWillReceiveProps(nextProps) {
-        let page = Number(nextProps.page);
+        let page = nextProps.page;
         if (this.state && this.state.currentPage !== page) {
             this.state.currentPage = page;
             this.buildPages();
@@ -74,16 +74,16 @@ export default class Pagination extends React.Component {
 
     // Conditionally return anchor tag or simple
     // span without navigation abilities
-    static getPageElement(page) {
+    getPageElement(page) {
         if (page.num) {
-            return (<Link onClick={Pagination.onNavClick} to={`/issues/${page.num}`}>{page.label}</Link>)
+            return (<Link onClick={this.onNavClick} to={`/issues?page=${page.num}`}>{page.label}</Link>)
         } else {
             return (<span>{page.label}</span>)
         }
     }
 
     // Remove sticky active effect when clicking on links
-    static onNavClick(event) {
+    onNavClick(event) {
         event.target.blur();
     }
 
@@ -92,10 +92,12 @@ export default class Pagination extends React.Component {
             <nav>
                 <ul className="pagination">
                     { this.state.pages.map((page, index) => {
-                        return (<li key={index} className={page.classes}>{Pagination.getPageElement(page)}</li>);
+                        return (<li key={index} className={page.classes}>{this.getPageElement(page)}</li>);
                     })}
                 </ul>
             </nav>
         )
     }
 }
+
+Pagination.propTypes = { page: React.PropTypes.number.isRequired };

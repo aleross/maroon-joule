@@ -18,14 +18,18 @@ export default class IssueList extends React.Component {
     }
 
     fetchIssues() {
-        this.state.page = this.props.params.page || 1;
-        loadFromGithub(`/repos/npm/npm/issues?page=${this.state.page}&per_page=25`)
+        loadFromGithub(`/repos/npm/npm/issues?page=${this.getPage(this.props)}&per_page=25`)
             .then(data => {
                 if (!this.ignoreLastFetch) {
                     this.setState({ issues: data });
                 }
             })
             .catch(e => console.error(e));
+    }
+
+    getPage(props) {
+        let { query } = props.location;
+        return query ? (Number(query.page) || 1) : 1;
     }
 
     // Load issues list when first mounted
@@ -35,8 +39,8 @@ export default class IssueList extends React.Component {
 
     // Refresh issues list
     componentDidUpdate(prevProps) {
-        let prevPage = prevProps.params.page;
-        let newPage = this.props.params.page;
+        let prevPage = this.getPage(prevProps);
+        let newPage = this.getPage(this.props);
         if (prevPage !== newPage) {
             this.fetchIssues();
         }
@@ -52,10 +56,10 @@ export default class IssueList extends React.Component {
             <section id="issues-list">
                 <ul>
                     {this.state.issues.map(issue => (
-                        <li key={issue.number}><Link to={`/issue/${issue.number}`}>{issue.title}</Link></li>
+                        <li key={issue.number}><Link to={`/issues/${issue.number}`}>{issue.title}</Link></li>
                     ))}
                 </ul>
-                <Pagination page={this.state.page}/>
+                <Pagination page={this.getPage(this.props)}/>
             </section>
         )
     }
