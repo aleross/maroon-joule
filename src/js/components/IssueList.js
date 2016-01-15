@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { browserHistory } from 'react-router';
 import { loadFromGithub } from '../utils';
 import Pagination from './Pagination';
 
@@ -40,6 +41,9 @@ export default class IssueList extends React.Component {
         loadFromGithub(`/repos/npm/npm/issues?page=${this._getPage(this.props)}&per_page=25`)
             .then(data => {
                 if (!this.ignoreLastFetch) {
+                    data.forEach(issue => {
+                        issue.body = issue.body.slice(0, 140);
+                    });
                     this.setState({ issues: data });
                 }
             })
@@ -51,6 +55,10 @@ export default class IssueList extends React.Component {
         return query ? (Number(query.page) || 1) : 1;
     }
 
+    _viewIssue(issue) {
+        this.props.history.pushState(null, `/issues/${issue.number}?page=${this._getPage(this.props)}`);
+    }
+
     render() {
         return (
             <div id="content">
@@ -58,7 +66,18 @@ export default class IssueList extends React.Component {
                     <header><h2 id="issues-header">All Open Issues <small>(npm/npm)</small></h2></header>
                     <ul className="scroll">
                         {this.state.issues.map(issue => (
-                            <li className="issue" key={issue.number}><Link to={`/issues/${issue.number}`}>{issue.title}</Link></li>
+                            <li className="issue media" key={issue.number} onClick={this._viewIssue.bind(this, issue)}>
+                                <div className="media-left">
+                                    <img className="avatar" src={issue.user.avatar_url}/>
+                                </div>
+                                <div className="media-body">
+                                    <header className="issue-header">
+                                        <h4 className="issue-title">{issue.title}</h4>
+                                        <span className="issue-meta">#{issue.number} opened by <a href={issue.user.html_url}>@{issue.user.login}</a></span>
+                                    </header>
+                                    <p className="issue-body">{issue.body}</p>
+                                </div>
+                            </li>
                         ))}
                     </ul>
                     <footer>

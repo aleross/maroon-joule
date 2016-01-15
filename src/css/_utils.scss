@@ -4,11 +4,11 @@
 .scroll {
     &::-webkit-scrollbar-thumb {
         border-radius: 0;
-        background-color: whitesmoke;
+        background-color: #9DA6B0;
     }
 
     &::-webkit-scrollbar-track {
-        border-left: 1px solid whitesmoke;
+        border-left: 1px solid transparent;
     }
 
     &::-webkit-scrollbar {

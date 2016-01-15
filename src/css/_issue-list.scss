@@ -3,7 +3,7 @@
 
     $header-height: 60px;
     $footer-height: 80px;
-    $base-padding: 30px;
+    $base-padding: 20px; // consistent spacing between elements
 
     width: 50%;
     height: 100%;
@@ -17,13 +17,57 @@
     }
     .issue {
         display: block;
-        padding: ($base-padding / 2) $base-padding;
+        margin: 0;
+        padding: $base-padding;
+        border-bottom: 1px solid whitesmoke;
+        &:last-child {
+            border-bottom: 0 none;
+        }
         &:hover {
-            background: lightblue;
+            background: lighten(lightblue, 15);
             cursor: pointer;
         }
+
+        a {
+            color: #677380;
+            &:hover {
+                text-decoration: none;
+            }
+        }
+
+        .issue-title {
+            color: #333;
+            font-weight: bold;
+            font-size: 18px;
+            margin: 0;
+            &:hover {
+                text-decoration: none;
+            }
+        }
+
+        .issue-meta {
+            font-weight: 500;
+            font-size: 90%;
+            color: #9DA6B0;
+            display: block;
+            padding: 5px 0 10px 0;
+            a:hover {
+                text-decoration: underline;
+            }
+        }
+
+        .issue-body {
+            margin: 0;
+            word-wrap: break-word;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
     }
-    header {
+    > header {
         display: flex;
         position: absolute;
         height: $header-height;
