@@ -2,6 +2,7 @@
     width: 50%;
     height: 100%;
     border-left: 1px solid #ccc;
+    overflow-y: scroll;
 }
 
 #issue-detail {
@@ -20,7 +21,6 @@
         border-bottom: 1px solid whitesmoke;
 
         .detail-avatar {
-            display: block;
             img {
                 width: 80px;
                 height: 80px;

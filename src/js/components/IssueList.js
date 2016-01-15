@@ -86,7 +86,7 @@ export default class IssueList extends React.Component {
                         <Pagination page={this._getPage(this.props)}/>
                     </footer>
                 </section>
-                <section id="detail-wrapper">
+                <section id="detail-wrapper" className="scroll">
                     {(() => {
                         if (this.props.params.issueId) {
                             return this.props.children;

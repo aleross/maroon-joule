@@ -42,7 +42,7 @@ export default class IssueDetail extends React.Component {
         if (issue) {
             return (
                 <div id="issue-detail">
-                    <span className="detail-state label">{issue.state}</span>
+                    <a href={issue.html_url} title="View on Github" className="detail-state label">{issue.state}</a>
                     <header className="detail-header">
                         <a className="detail-avatar" href={issue.user.html_url}>
                             <img src={issue.user.avatar_url}/>
