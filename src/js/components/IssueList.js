@@ -63,7 +63,9 @@ export default class IssueList extends React.Component {
         return (
             <div id="content">
                 <section id="issue-list">
-                    <header><h2 id="issues-header">All Open Issues <small>(npm/npm)</small></h2></header>
+                    <header>
+                        <h2 id="issues-header">All Open Issues <small>(npm/npm)</small></h2>
+                    </header>
                     <ul className="scroll">
                         {this.state.issues.map(issue => (
                             <li className="issue media" key={issue.number} onClick={this._viewIssue.bind(this, issue)}>
