@@ -4,10 +4,29 @@
             <meta charset="UTF-8">
             <title>React Demo</title>
             <script async src="http://localhost:8080/build/bundle.js" charset="utf-8"></script>
-            <link href='https://fonts.googleapis.com/css?family=Lato:400,700,300' rel='stylesheet' type='text/css'>
+            <link href="https://fonts.googleapis.com/css?family=Lato:400,700,300" rel="stylesheet" type="text/css">
+            <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
         </head>
         <body>
-            <nav id="sidebar"></nav>
+            <nav id="sidebar">
+                <a id="app-icon" href="https://github.com/aleross/maroon-joule">
+                    <img src="/src/img/icon.png">
+                    <div id="app-name">
+                        <span>Issues Viewer</span>
+                        <span>Maroon Joule</span>
+                    </div>
+                </a>
+                <nav id="project-links">
+                    <span>npm/npm Links:</span>
+                    <ul>
+                        <li><a class="ion-code" href="https://github.com/npm/npm">Code</a></li>
+                        <li><a class="ion-pull-request" href="https://github.com/npm/npm/pulls">Pull requests</a></li>
+                        <li><a class="ion-clipboard" href="https://github.com/npm/npm/wiki">Wiki</a></li>
+                        <li><a class="ion-arrow-graph-up-right" href="https://github.com/npm/npm/pulse">Pulse</a></li>
+                        <li><a class="ion-stats-bars" href="https://github.com/npm/npm/graphs">Graphs</a></li>
+                    </ul>
+                </nav>
+            </nav>
             <div id="content-wrapper"></div>
         </body>
     </html>

@@ -1,5 +1,59 @@
-#issue-detail {
+#detail-wrapper {
     width: 50%;
     height: 100%;
     border-left: 1px solid #ccc;
+}
+
+#issue-detail {
+    position: relative;
+    padding: 30px;
+
+    .detail-state {
+        position: absolute;
+        background: #6CC644;
+        left: 30px;
+        font-size: 90%;
+    }
+
+    .detail-header {
+        text-align: center;
+        border-bottom: 1px solid whitesmoke;
+
+        .detail-avatar {
+            display: block;
+            img {
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+            }
+        }
+
+        .detail-username {
+            display: block;
+            padding-top: 5px;
+            color: #9DA6B0;
+            a {
+                font-weight: bold;
+            }
+        }
+
+        .detail-title {
+            font-size: 32px;
+            margin: 15px 0 30px;
+            text-align: left;
+            line-height: 1.2;
+        }
+
+        .detail-number {
+            color: #9DA6B0;
+        }
+    }
+
+    .detail-body {
+        padding: 30px 0;
+    }
+
+    .detail-comments {
+        background: whitesmoke;
+    }
 }

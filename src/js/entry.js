@@ -44,7 +44,7 @@ class NoMatch extends React.Component {
 render((
     <Router history={browserHistory}>
         <Route path="/" component={IssueList}>
-            <Route path="/issues/:issueId" component={IssueDetail}/>
+            <Route path="/:issueId" component={IssueDetail}/>
         </Route>
         <Route path="*" component={NoMatch}/>
     </Router>

@@ -1,0 +1,15 @@
+.comment {
+    padding: 15px 30px;
+    border-bottom: 1px solid #ddd;
+    &:last-child {
+        border-bottom: 0;
+    }
+    .comment-header {
+        padding-bottom: 15px;
+        font-weight: bold;
+    }
+
+    .comment-body {
+
+    }
+}

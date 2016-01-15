@@ -56,7 +56,7 @@ export default class IssueList extends React.Component {
     }
 
     _viewIssue(issue) {
-        this.props.history.pushState(null, `/issues/${issue.number}?page=${this._getPage(this.props)}`);
+        this.props.history.pushState(null, `/${issue.number}?page=${this._getPage(this.props)}`);
     }
 
     render() {
@@ -64,7 +64,7 @@ export default class IssueList extends React.Component {
             <div id="content">
                 <section id="issue-list">
                     <header>
-                        <h2 id="issues-header">All Open Issues <small>(npm/npm)</small></h2>
+                        <h2 id="issues-header">All Issues <small>(npm/npm)</small></h2>
                     </header>
                     <ul className="scroll">
                         {this.state.issues.map(issue => (
@@ -86,7 +86,15 @@ export default class IssueList extends React.Component {
                         <Pagination page={this._getPage(this.props)}/>
                     </footer>
                 </section>
-                <section id="issue-detail">Select an issue</section>
+                <section id="detail-wrapper">
+                    {(() => {
+                        if (this.props.params.issueId) {
+                            return this.props.children;
+                        } else {
+                            return (<section id="select-issue">Select an issue</section>)
+                        }
+                    })()}
+                </section>
             </div>
         )
     }
