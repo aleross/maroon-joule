@@ -1,7 +1,7 @@
 # maroon-joule
 A Github Issues viewer written in ES6 and React.
 
-### Instructions
+### Get started
 Run locally using npm + webpack:
 ```
 npm install
