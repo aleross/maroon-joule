@@ -4,7 +4,6 @@ import '../css/app.scss';
 // TODO router
 
 import 'babel-polyfill';
-import Issues from './components/Issues';
 import IssueList from './components/IssueList';
 import IssueDetail from './components/IssueDetail';
 import React from 'react';
