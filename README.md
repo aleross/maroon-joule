@@ -1,5 +1,5 @@
 # maroon-joule
-The new Github Issues
+A Github Issues viewer written in ES6 and React.
 
 Run locally using npm + webpack:
 ```
