@@ -1,8 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import '../css/app.scss';
-
-// TODO router
-
 import 'babel-polyfill';
 import IssueList from './components/IssueList';
 import IssueDetail from './components/IssueDetail';
@@ -35,10 +32,6 @@ class NoMatch extends React.Component {
         )
     }
 }
-
-// TODO:
-// - 404 route
-// - dynamic repo
 
 render((
     <Router history={browserHistory}>
