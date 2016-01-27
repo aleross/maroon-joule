@@ -19,6 +19,7 @@ export default class Comments extends React.Component {
         let prevIssue = prevProps.issue;
         let newIssue = this.props.issue;
         if (prevIssue !== newIssue) {
+            this.setState({ comments: [] });
             this._fetchComments();
         }
     }
